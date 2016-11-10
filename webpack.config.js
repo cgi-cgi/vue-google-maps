@@ -26,8 +26,9 @@ var baseConfig = {
   // example: if you wish to apply custom babel options
   // instead of using vue-loader's default:
   babel: {
-    presets: ['es2015', 'stage-0'],
-    plugins: ['transform-runtime']
+    presets: ['es2015', 'stage-2'],
+    plugins: ['transform-runtime', "transform-export-extensions"],
+    comments: false
   }
 }; /* baseConfig */
 
