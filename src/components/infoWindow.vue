@@ -1,7 +1,7 @@
 /* vim: set softtabstop=2 shiftwidth=2 expandtab : */
 
 <template>
-<div>
+<div v-if="opened">
   <slot>
   <div class="you-will-never-find-this"></div>
   </slot>
@@ -63,14 +63,14 @@ export default MapComponent.extend({
 
     // if the user set the content of the info window by adding children to the 
     // InfoWindow element
-    this.$el.style.display='none';
-    if (this.$el.getElementsByClassName('you-will-never-find-this').length === 0) {
-      const innerChanged = () => {
-        this.content = this.$el.innerHTML;
-      }
-      innerChanged();
-      this.disconnect = mutationObserver(this.$el, innerChanged);
-    } 
+    // this.$el.style.display='none';
+    // if (this.$el.getElementsByClassName('you-will-never-find-this').length === 0) {
+    //   const innerChanged = () => {
+    //     this.content = this.$el.innerHTML;
+    //   }
+    //   innerChanged();
+    //   this.disconnect = mutationObserver(this.$el, innerChanged);
+    // }
   },
 
   deferredReady() {
@@ -104,8 +104,9 @@ export default MapComponent.extend({
     createInfoWindow(map) {
       if (this.destroyed) return;
 
-      var el = document.createElement('div');
-      el.innerHTML = this.content;
+      // var el = document.createElement('div');
+      // el.innerHTML = this.content;
+      var el = this.$el
 
       google.maps.event.addDomListener(el, 'click', (ev) => {
         this.$emit('g-click', ev);
